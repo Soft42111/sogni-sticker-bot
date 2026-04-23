@@ -195,7 +195,6 @@ if (!token) {
   console.error('Error: TELEGRAM_BOT_TOKEN is not set in the environment.');
   process.exit(1);
 }
-console.log('Telegram bot token:', token);
 
 // Track polling errors so we don't spam restarts
 let retryCount = 0;
