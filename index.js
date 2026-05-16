@@ -1,7 +1,7 @@
 require('dotenv').config();
 const fs = require('fs');
 const express = require('express');
-const { SogniClientWrapper, ClientEvent } = require('@sogni-ai/sogni-client-wrapper');
+const { SogniClientWrapper, ClientEvent } = require('@sogni-ai/sogni-intelligence-client');
 
 // Express app setup
 const app = express();
