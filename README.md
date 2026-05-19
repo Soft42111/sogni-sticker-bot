@@ -46,7 +46,7 @@ This bot can run in two modes at once (Telegram and/or Discord). If you only wan
 ### 1. Clone or Download
 
 ```
-git clone https://github.com/your-user/sogni-sticker-bot.git
+git clone https://github.com/Sogni-AI/sogni-sticker-bot.git
 cd sogni-sticker-bot
 ```
 
@@ -55,8 +55,6 @@ cd sogni-sticker-bot
 ```
 npm install
 ```
-
-This repo is also published on npm as `@sogni-ai/sogni-sticker-bot`.
 
 ### 3. Set Up Environment Variables
 
