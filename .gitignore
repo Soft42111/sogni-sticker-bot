@@ -1,8 +1,25 @@
 .DS_Store
-node_modules
+node_modules/
 renders/
+
+# Env
 .env
+.env.local
+
+# Runtime state files (not for git)
 channelConfig.json
 videoRateLimit.json
 videoRateLimitDiscord.json
-discordBot.js
+
+# IDE / agent files
+.vscode/
+.idea/
+.cursor/
+.claude/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
