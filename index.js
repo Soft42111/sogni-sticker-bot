@@ -6,6 +6,7 @@ const { SogniClientWrapper, ClientEvent } = require('@sogni-ai/sogni-intelligenc
 // Express app setup
 const app = express();
 const port = process.env.PORT || 3004;
+const SOGNI_APP_SOURCE = process.env.SOGNI_APP_SOURCE || 'sogni-sticker-bot';
 
 // Simple heartbeat route for uptime monitoring
 app.get('/heartbeat', (req, res) => {
@@ -26,6 +27,18 @@ if (!telegramToken && !discordToken) {
   process.exit(1);
 }
 
+function withSogniSocketAppSource(socketEndpoint) {
+  if (!socketEndpoint) return socketEndpoint;
+  try {
+    const url = new URL(socketEndpoint);
+    url.searchParams.set('appSource', SOGNI_APP_SOURCE);
+    return url.toString();
+  } catch (error) {
+    console.warn(`Could not attach Sogni socket appSource: ${error.message}`);
+    return socketEndpoint;
+  }
+}
+
 /**
  * Connect to the Sogni API through the wrapper.
  * On startup failure, we log and exit so that an external process can restart us.
@@ -38,9 +51,10 @@ async function connectSogni() {
       username: process.env.SOGNI_USERNAME,
       password: process.env.SOGNI_PASSWORD,
       appId: process.env.APP_ID,
+      appSource: SOGNI_APP_SOURCE,
       network: 'fast',
       restEndpoint: process.env.REST_ENDPOINT,
-      socketEndpoint: process.env.SOCKET_ENDPOINT,
+      socketEndpoint: withSogniSocketAppSource(process.env.SOCKET_ENDPOINT),
       autoConnect: false,
     });
 
